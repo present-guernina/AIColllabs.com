@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Colllabs - Learn. Link. Launch. Listen. Leverage. Lead.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ff6b35 0%, #a4d65e 50%, #4caf50 100%);
+            color: white;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b35, #a4d65e);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-symbol {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff6b35 0%, #a4d65e 50%, #4caf50 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section .subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #666;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .six-ls-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e8f5e8 100%);
+        }
+
+        .six-ls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .l-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .l-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(135deg, #ff6b35, #4caf50);
+            border-radius: 20px 0 0 20px;
+        }
+
+        .l-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+        }
+
+        .l-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 800;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .l-icon.learn {
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+        }
+
+        .l-icon.learn::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid white;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border-bottom: none;
+            border-right: none;
+        }
+
+        .l-icon.link {
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+        }
+
+        .l-icon.link::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 3px solid white;
+            border-radius: 50%;
+            left: 12px;
+            transform: rotate(45deg);
+            box-shadow: 20px 0 0 -3px white, 20px 0 0 0 white;
+        }
+
+        .l-icon.launch {
+            background: linear-gradient(45deg, #4caf50, #a4d65e);
+        }
+
+        .l-icon.launch::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 25px solid white;
+            top: 8px;
+        }
+
+        .l-icon.launch::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 8px;
+            background: linear-gradient(45deg, #ff6b35, #ffa500);
+            bottom: 8px;
+            border-radius: 0 0 50% 50%;
+        }
+
+        .l-icon.listen {
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+        }
+
+        .l-icon.listen::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 25px;
+            border: 3px solid white;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border-bottom: none;
+        }
+
+        .l-icon.listen::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            right: 18px;
+        }
+
+        .l-icon.leverage {
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+        }
+
+        .l-icon.leverage::before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: white;
+            transform: rotate(45deg);
+            box-shadow: 0 0 0 2px white;
+        }
+
+        .l-icon.leverage::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 2px solid white;
+            border-radius: 50%;
+            border-bottom: none;
+            border-right: none;
+            transform: rotate(45deg);
+            top: 10px;
+            right: 10px;
+        }
+
+        .l-icon.lead {
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+        }
+
+        .l-icon.lead::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 30px;
+            background: white;
+            transform: rotate(45deg);
+        }
+
+        .l-icon.lead::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 12px solid white;
+            top: 8px;
+            right: 8px;
+            transform: rotate(45deg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .strategy-section {
+            background: linear-gradient(135deg, #fff5f0 0%, #f0f8f0 100%);
+        }
+
+        .strategy-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .clients-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            align-items: center;
+        }
+
+        .client-logo {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .client-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .client-logo h4 {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .client-logo p {
+            color: #666;
+            font-size: 0.85rem;
+            margin: 5px 0 0 0;
+        }
+
+        .meltzer-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .meltzer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .meltzer-image {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto;
+            font-weight: 800;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b35, #a4d65e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .roi-section {
+            background: linear-gradient(135deg, #ff6b35 0%, #4caf50 100%);
+            color: white;
+        }
+
+        .roi-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .roi-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .roi-percentage {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f8f0 100%);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff6b35, #4caf50) border-box;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .meltzer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .six-ls-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .clients-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+            
+            /* Discovery process table responsiveness */
+            #process table {
+                font-size: 0.85rem;
+            }
+            
+            #process th, #process td {
+                padding: 10px 8px;
+            }
+            
+            /* Founder section mobile responsiveness */
+            #about .container > div:first-of-type {
+                grid-template-columns: 1fr !important;
+                text-align: center;
+            }
+            
+            #about .container > div:first-of-type > div:first-child {
+                margin-bottom: 40px;
+            }
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .blueprint-highlight {
+            background: linear-gradient(45deg, #ff6b35, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-symbol">AI</div>
+                <div class="logo-text">COLLLABS</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">Founder</a></li>
+                <li><a href="#sixls">Our Method</a></li>
+                <li><a href="#process">Discovery Process</a></li>
+                <li><a href="#clients">Client Portfolio</a></li>
+                <li><a href="#strategy">Strategy</a></li>
+                <li><a href="#partnership">Cross-Sector</a></li>
+                <li><a href="#roi">ROI</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Transform Your Enterprise with Cross-Sector AI Intelligence</h1>
+            <p class="subtitle">Dutch innovation meets global cross-sector partnerships. We create exponential value through data cross-pollination between industries, where every sector benefits from multi-industry intelligence.</p>
+            <p class="tagline">Learn. Link. Launch. Listen. Leverage. Lead.</p>
+            <a href="#contact" class="cta-button">Start Your Transformation</a>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="container">
+            <h2>Meet the Founder</h2>
+            <p class="subtitle">Leading AI Colllabs' mission to transform enterprises through strategic innovation and cross-sector intelligence mastery.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center; margin-bottom: 80px;">
+                <div style="text-align: center;">
+                    <div style="width: 250px; height: 250px; border-radius: 50%; margin: 0 auto 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); background: linear-gradient(135deg, #2c3e50, #34495e);">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAD6APoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAAxEA" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.1);">
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                        <p style="margin: 0; color: #666; font-size: 0.9rem;">LinkedIn Network</p>
+                        <p style="margin: 5px 0 0 0; font-size: 1.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">1,891+ Followers</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <p style="margin: 0; color: #666; font-size: 0.9rem;">Multi-Industry Experience</p>
+                        <p style="margin: 5px 0 0 0; font-size: 1.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">15+ Years</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 2.2rem; margin-bottom: 15px; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Elhem Guernina</h3>
+                    <p style="font-size: 1.2rem; color: #ff6b35; font-weight: 600; margin-bottom: 25px;">Cross-Sector Strategy Partner | Multi-Industry Innovation Catalyst | Data Cross-Pollination Expert</p>
+                    
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border-left: 4px solid #ff6b35; margin-bottom: 25px;">
+                        <p style="margin: 0; font-style: italic; color: #333; font-size: 1.05rem;">
+                            <strong>"The Art of Being Human is to live life in all its aspects, yet with awareness."</strong> (The Drunken Monk)
+                        </p>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 1.1rem;">Cross-Sector Enterprise Portfolio:</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                                <p style="color: #ff6b35; font-weight: 600; margin-bottom: 5px;">AI Colllabs (2024)</p>
+                                <p style="color: #666; font-size: 0.9rem; margin: 0;">Cross-Sector Data Partnerships & Intelligence</p>
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                                <p style="color: #4caf50; font-weight: 600; margin-bottom: 5px;">WeGetBetterAI (2015)</p>
+                                <p style="color: #666; font-size: 0.9rem; margin: 0;">AI Multi-Industry Transformation</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 1.1rem;">Multi-Sector Expertise:</h4>
+                        <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <li style="color: #666;">✓ Healthcare + Real Estate Intelligence</li>
+                            <li style="color: #666;">✓ Finance + Sports Data Integration</li>
+                            <li style="color: #666;">✓ Telecom + Culture Monetization</li>
+                            <li style="color: #666;">✓ Cross-Industry AI Implementation</li>
+                            <li style="color: #666;">✓ Multi-Market Change Management</li>
+                            <li style="color: #666;">✓ Data Cross-Pollination Creation</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="font-size: 1.1rem; color: #333; font-weight: 500; background: #f8fafc; padding: 20px; border-radius: 10px; border-left: 4px solid #ff6b35;">
+                        <strong>Mission:</strong> Creating exponential value through cross-sector intelligence where data partnerships between healthcare, finance, telecom, real estate, culture, and sports generate <span style="color: #ff6b35; font-weight: 700;">substantial mutual benefits</span> for all parties.
+                    </p>
+                    
+                    <p style="margin-top: 20px; color: #666; font-style: italic; font-weight: 500;">Amsterdam, Netherlands</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 0;">Cross-Sector AI Business Blueprint</h2>
+            <p class="subtitle">Through 15+ years of multi-industry transformation experience across healthcare, finance, telecom, real estate, culture, and sports, Elhem has developed the revolutionary <span class="blueprint-highlight">AI Business Blueprint</span> that creates exponential value through data cross-pollination between all sectors.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="l-icon learn" style="width: 100%; height: 100%; margin: 0; border-radius: 15px;"></div>
+                    </div>
+                    <h3>Cross-Sector Intelligence</h3>
+                    <p>Transform any enterprise by integrating intelligence from every industry. Healthcare insights enhance real estate, sports data improves financial models, telecom intelligence boosts cultural initiatives through our proven <span class="blueprint-highlight">AI Business Blueprint</span>.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="l-icon link" style="width: 100%; height: 100%; margin: 0; border-radius: 15px;"></div>
+                    </div>
+                    <h3>Multi-Industry Data Integration</h3>
+                    <p>Our exclusive <span class="blueprint-highlight">AI Business Blueprint</span> combines insights from healthcare, finance, telecom, real estate, culture, and sports to create competitive advantages no single-sector approach can achieve.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="l-icon leverage" style="width: 100%; height: 100%; margin: 0; border-radius: 15px;"></div>
+                    </div>
+                    <h3>Exponential Value Creation</h3>
+                    <p>Unlike traditional single-sector consulting, our cross-industry partnership model creates mutual benefits for all parties. Healthcare enhances real estate, sports amplifies finance, culture monetizes data across all sectors.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="l-icon lead" style="width: 100%; height: 100%; margin: 0; border-radius: 15px;"></div>
+                    </div>
+                    <h3>Every Market Access</h3>
+                    <p>Dutch innovation expertise combined with proven experience across healthcare, finance, telecom, real estate, culture, and sports opens opportunities in every enterprise market through our proprietary methodology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section six-ls-section" id="sixls">
+        <div class="container">
+            <h2>The AI Colllabs Method</h2>
+            <p class="subtitle">Our <span class="blueprint-highlight">AI Business Blueprint</span> creates exponential value through cross-sector intelligence, where data partnerships between healthcare, finance, telecom, real estate, culture, and sports generate mutual benefits for all parties.</p>
+            
+            <div class="six-ls-grid">
+                <div class="l-card">
+                    <div class="l-icon learn"></div>
+                    <h3>Learn</h3>
+                    <p><strong>Cross-Sector Data Intelligence</strong></p>
+                    <p>Extract insights from every industry - healthcare, finance, telecom, real estate, culture. Our blueprint learns from cross-industry patterns to create unique competitive advantages that single-sector approaches cannot achieve.</p>
+                </div>
+                
+                <div class="l-card">
+                    <div class="l-icon link"></div>
+                    <h3>Link</h3>
+                    <p><strong>Multi-Industry Partnership Creation</strong></p>
+                    <p>Connect different sectors for mutual value creation. Link healthcare data with real estate intelligence, combine financial insights with sports analytics, creating cross-pollination opportunities across all markets.</p>
+                </div>
+                
+                <div class="l-card">
+                    <div class="l-icon launch"></div>
+                    <h3>Launch</h3>
+                    <p><strong>Cross-Sector Platform Deployment</strong></p>
+                    <p>Launch platforms that benefit from multiple industry datasets. Whether starting in sports, healthcare, finance, or culture - every sector gains exponential value from cross-industry intelligence integration.</p>
+                </div>
+                
+                <div class="l-card">
+                    <div class="l-icon listen"></div>
+                    <h3>Listen</h3>
+                    <p><strong>Multi-Market Intelligence Gathering</strong></p>
+                    <p>Continuous monitoring across all sectors creates comprehensive market intelligence. Listen to patterns across healthcare, finance, telecom, sports, and culture to predict cross-industry opportunities.</p>
+                </div>
+                
+                <div class="l-card">
+                    <div class="l-icon leverage"></div>
+                    <h3>Leverage</h3>
+                    <p><strong>Cross-Industry Revenue Multiplication</strong></p>
+                    <p>Leverage data partnerships between sectors to multiply revenue streams. Healthcare insights enhance real estate value, sports data improves financial models, creating exponential returns through cross-pollination.</p>
+                </div>
+                
+                <div class="l-card">
+                    <div class="l-icon lead"></div>
+                    <h3>Lead</h3>
+                    <p><strong>Market Leadership Through Integration</strong></p>
+                    <p>Lead your industry by integrating insights from all sectors. Become the market leader who understands not just your industry, but how every sector can enhance your competitive advantage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: linear-gradient(135deg, #fff5f0 0%, #f0f8f0 100%);" id="process">
+        <div class="container">
+            <h2>AI Business Blueprint™ Discovery Process</h2>
+            <p class="subtitle">Our proprietary <span class="blueprint-highlight">5-week Discovery Phase</span> transforms enterprise challenges into cross-sector opportunities. From initial inquiry to strategy delivery - every engagement follows our signature methodology.</p>
+            
+            <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 50px rgba(0,0,0,0.1); margin-top: 60px; border-left: 5px solid #ff6b35;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 20px;">
+                    <h3 style="margin: 0; color: #333; font-size: 1.8rem;">DISCOVERY PHASE</h3>
+                    <div style="background: linear-gradient(45deg, #ff6b35, #4caf50); color: white; padding: 8px 20px; border-radius: 25px; font-weight: 600; font-size: 0.9rem;">
+                        AI Business Blueprint™ (Copyright)
+                    </div>
+                </div>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; color: #333; font-weight: 700;">Week</th>
+                                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; color: #333; font-weight: 700;">Sessions</th>
+                                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; color: #333; font-weight: 700;">Type</th>
+                                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; color: #333; font-weight: 700;">Deliverables</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">1</td>
+                                <td style="padding: 15px; color: #333;">Kick-off & Cross-Sector Strategy + KPIs</td>
+                                <td style="padding: 15px; color: #666;">Interactive Workshop</td>
+                                <td style="padding: 15px; color: #666;">Project Roadmap</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">1</td>
+                                <td style="padding: 15px; color: #333;">Multi-Industry Intelligence Mapping</td>
+                                <td style="padding: 15px; color: #666;">Interactive Workshop</td>
+                                <td style="padding: 15px; color: #666;">Consultancy Report</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">2</td>
+                                <td style="padding: 15px; color: #333;">Cross-Sector Journey Mapping</td>
+                                <td style="padding: 15px; color: #666;">Interactive Workshop</td>
+                                <td style="padding: 15px; color: #666;">Value Chain Analysis</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">2</td>
+                                <td style="padding: 15px; color: #333;">AI Blueprint Architecture & Framework</td>
+                                <td style="padding: 15px; color: #666;">Interactive Workshop</td>
+                                <td style="padding: 15px; color: #666;">Technical Specifications</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">3</td>
+                                <td style="padding: 15px; color: #333;">Blueprint Framework Presentation</td>
+                                <td style="padding: 15px; color: #666;">Executive Presentation</td>
+                                <td style="padding: 15px; color: #666;">Strategic Framework</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">3</td>
+                                <td style="padding: 15px; color: #333;">Cross-Pollination Technology Session</td>
+                                <td style="padding: 15px; color: #666;">Interactive Workshop</td>
+                                <td style="padding: 15px; color: #666;">Implementation Plan</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">4</td>
+                                <td style="padding: 15px; color: #333;">Partnership Strategy Concept</td>
+                                <td style="padding: 15px; color: #666;">Executive Presentation</td>
+                                <td style="padding: 15px; color: #666;">Partnership Models</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">4</td>
+                                <td style="padding: 15px; color: #333;">Final AI Business Blueprint™</td>
+                                <td style="padding: 15px; color: #666;">Executive Presentation</td>
+                                <td style="padding: 15px; color: #666;">Complete Strategy</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px; font-weight: 600; color: #ff6b35;">5</td>
+                                <td style="padding: 15px; color: #333;">Discovery Delivery & Implementation Kickoff</td>
+                                <td style="padding: 15px; color: #666;">Executive Presentation</td>
+                                <td style="padding: 15px; color: #666;">Go-Live Strategy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="background: #f8fafc; padding: 25px; border-radius: 15px; border-left: 4px solid #4caf50;">
+                    <h4 style="color: #4caf50; margin-bottom: 15px; font-size: 1.2rem;">Weekly Engagement Structure</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div>
+                            <p style="margin-bottom: 10px; color: #333; font-weight: 600;">Interactive Workshops:</p>
+                            <ul style="list-style: none; padding-left: 0; color: #666; font-size: 0.95rem;">
+                                <li>✓ Cross-sector intelligence gathering</li>
+                                <li>✓ Multi-industry opportunity mapping</li>
+                                <li>✓ AI framework co-creation</li>
+                                <li>✓ Technology architecture design</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p style="margin-bottom: 10px; color: #333; font-weight: 600;">Executive Presentations:</p>
+                            <ul style="list-style: none; padding-left: 0; color: #666; font-size: 0.95rem;">
+                                <li>✓ Strategic framework validation</li>
+                                <li>✓ Partnership model proposals</li>
+                                <li>✓ Complete AI Business Blueprint™</li>
+                                <li>✓ Implementation roadmap delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800;">01</div>
+                    <h4 style="color: #ff6b35; margin-bottom: 10px;">From Inquiry to Engagement</h4>
+                    <p style="color: #666; font-size: 0.95rem;">Initial consultation → Strategic fit assessment → Discovery Phase proposal → Contract signature</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800;">02</div>
+                    <h4 style="color: #4caf50; margin-bottom: 10px;">Discovery to Strategy</h4>
+                    <p style="color: #666; font-size: 0.95rem;">5-week intensive process → Cross-sector analysis → AI Business Blueprint™ → Implementation roadmap</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800;">03</div>
+                    <h4 style="color: #a4d65e; margin-bottom: 10px;">Strategy to Delivery</h4>
+                    <p style="color: #666; font-size: 0.95rem;">Blueprint implementation → Cross-sector partnerships → Exponential value creation → Ongoing optimization</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(45deg, #ff6b35, #4caf50); border-radius: 20px; color: white;">
+                <h3 style="margin-bottom: 15px; font-size: 1.5rem;">AI Business Blueprint™ Investment</h3>
+                <p style="margin-bottom: 20px; opacity: 0.9;">Complete 5-week Discovery Phase with proprietary methodology</p>
+                <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Price on Request</div>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Includes all workshops, presentations, and complete strategic blueprint delivery</p>
+                <div style="margin-top: 20px;">
+                    <a href="#contact" style="background: white; color: #ff6b35; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease;">Request Discovery Proposal</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section clients-section" id="clients">
+        <div class="container">
+            <h2>Trusted by Industry Leaders</h2>
+            <p class="subtitle">15+ years of proven results across every major sector in the Netherlands and Europe</p>
+            
+            <div class="clients-grid">
+                <div class="client-logo">
+                    <div>
+                        <h4>ZIGGO</h4>
+                        <p>Telecom - Multi-Million P&L</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>HagaZiekenhuis</h4>
+                        <p>Healthcare - GRC</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>Dutch Banking</h4>
+                        <p>Finance - DEI Strategy</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>ANNEXUM</h4>
+                        <p>Real Estate - AI/ML</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>TRANSAVIA</h4>
+                        <p>Aviation - Digital Platform</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>FUNDA</h4>
+                        <p>Real Estate Tech</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>SCHIPHOL</h4>
+                        <p>Aviation - Marketing Tech</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>HEMA</h4>
+                        <p>Retail - Culture Partnership</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>SKYFISH</h4>
+                        <p>Data Assets - BeNeLux</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>ROBIN ENERGIE</h4>
+                        <p>Energy - Platform Strategy</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>MUSEUM TV</h4>
+                        <p>Culture - Digital Innovation</p>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div>
+                        <h4>e-VILLAGE</h4>
+                        <p>Marketing Tech - Scale-up</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px);">
+                <h3 style="color: #a4d65e; margin-bottom: 20px;">Cross-Sector Success Stories</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; text-align: left;">
+                    <div>
+                        <p style="margin-bottom: 15px;"><strong>Telecom + Culture:</strong> Created first HEMA-Museum sector partnership for accessible cultural offerings</p>
+                        <p style="margin-bottom: 15px;"><strong>Real Estate + AI:</strong> Developed machine learning rental pricing model at Annexum</p>
+                        <p style="margin-bottom: 15px;"><strong>Healthcare + Technology:</strong> Implemented AI-driven GRC transformation at HagaZiekenhuis</p>
+                    </div>
+                    <div>
+                        <p style="margin-bottom: 15px;"><strong>Finance + Innovation:</strong> Led DEI transformation across Dutch banking sector</p>
+                        <p style="margin-bottom: 15px;"><strong>Aviation + Marketing:</strong> Platform optimization for Transavia, Schiphol, Funda</p>
+                        <p style="margin-bottom: 15px;"><strong>Energy + Platform:</strong> Digital transformation for explosive growth management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section strategy-section" id="strategy">
+        <div class="container">
+            <h2>Three-Stage Cross-Sector Strategy</h2>
+            <p class="subtitle">Our proven three-stage strategy ensures stable revenue growth while complexity gradually increases. Each stage builds on the previous, maximizing lifetime value through our <span class="blueprint-highlight">AI Business Blueprint</span>.</p>
+            
+            <div class="strategy-steps">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Data Foundation</h3>
+                    <p><strong>Cross-Sector Analytics Platform</strong></p>
+                    <p>Establish credibility with proven methodology combining multi-industry intelligence. Generate immediate cash flow while validating cross-sector benefits with demanding clients.</p>
+                    <p style="margin-top: 15px; color: #ff6b35; font-weight: 600;">Investment: Price on Request</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Enhanced Integration</h3>
+                    <p><strong>Multi-Industry Ecosystem</strong></p>
+                    <p>Expand platform with comprehensive cross-sector programs. Create complete value chains that leverage healthcare, finance, telecom, real estate, culture, and sports intelligence.</p>
+                    <p style="margin-top: 15px; color: #ff6b35; font-weight: 600;">Investment: Price on Request</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Premium Cross-Pollination</h3>
+                    <p><strong>Complete Intelligence Ecosystem</strong></p>
+                    <p>Ultimate premium offering combining real-time data from all sectors. Cross-industry insights impossible to replicate, ensuring market leadership position.</p>
+                    <p style="margin-top: 15px; color: #ff6b35; font-weight: 600;">Investment: Price on Request</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: linear-gradient(135d, #f0f8f0 0%, #fff5f0 100%);">
+        <div class="container">
+            <h2>Proven Track Record</h2>
+            <p class="subtitle">15+ years of enterprise transformation with proven multi-million results, AI/ML implementation, and strategic partnerships with major Dutch brands across every sector.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px;">
+                <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 50px rgba(0,0,0,0.1); text-align: center; border-top: 5px solid #ff6b35;">
+                    <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px;">Multi-Million</div>
+                    <h3 style="margin-bottom: 15px; color: #333;">P&L Responsibility</h3>
+                    <p style="color: #666;">Sales Director at Ziggo with full P&L responsibility for Telecom Retail operations, delivering tailored marketing propositions and strategic partnerships.</p>
+                </div>
+                
+                <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 50px rgba(0,0,0,0.1); text-align: center; border-top: 5px solid #4caf50;">
+                    <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px;">14K+</div>
+                    <h3 style="margin-bottom: 15px; color: #333;">Employee Digital Innovation</h3>
+                    <p style="color: #666;">Developed revolutionary "Serious Gaming" digital learning program with 154 customer journeys for 14,000+ support & sales agents at Ziggo.</p>
+                </div>
+                
+                <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 50px rgba(0,0,0,0.1); text-align: center; border-top: 5px solid #a4d65e;">
+                    <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px;">AI/ML</div>
+                    <h3 style="margin-bottom: 15px; color: #333;">Real Estate Innovation</h3>
+                    <p style="color: #666;">Developed AI model for rental pricing determination at Annexum, combining LLM technology with real estate business intelligence implementation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section meltzer-section" id="partnership">
+        <div class="container">
+            <h2>Cross-Sector Value Creation</h2>
+            
+            <div class="meltzer-content">
+                <div>
+                    <h3 style="font-size: 2rem; margin-bottom: 20px; color: #a4d65e;">Multi-Industry Partnership Excellence</h3>
+                    <p style="margin-bottom: 20px; font-size: 1.1rem;">Data Cross-Pollination & Cross-Sector Intelligence Integration</p>
+                    
+                    <p style="margin-bottom: 15px;">Our proprietary <span style="color: #a4d65e; font-weight: 600;">AI Business Blueprint</span> creates exponential value through cross-pollination between healthcare, finance, telecom, real estate, culture, and sports - where every sector enhances every other sector.</p>
+                    
+                    <p style="margin-bottom: 25px; font-style: italic; color: #a4d65e; font-size: 1.1rem;">Transform Every Market Through Cross-Sector Intelligence.</p>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #a4d65e; margin-bottom: 10px;">Cross-Industry Value Creation:</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✓ Healthcare Data Enhances Real Estate Intelligence</li>
+                            <li>✓ Sports Analytics Optimize Financial Models</li>
+                            <li>✓ Telecom Insights Amplify Cultural Monetization</li>
+                            <li>✓ Multi-Sector AI Integration & Partnerships</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>AI Colllabs Advantage:</strong> Transform your enterprise through proven cross-pollination methodology that leverages insights from every industry, creating competitive advantages impossible through single-sector approaches.</p>
+                </div>
+                
+                <div class="meltzer-image">
+                    ×6
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">6+</div>
+                    <p>Industry Sectors Integrated</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <p>Years Cross-Sector Experience</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Enterprise</div>
+                    <p>Value Creation Focus</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Exponential</div>
+                    <p>Cross-Pollination Returns</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section roi-section" id="roi">
+        <div class="container">
+            <h2>Exponential Value Creation</h2>
+            <p class="subtitle">Our <span style="color: #ffffff; font-weight: 700;">AI Business Blueprint</span> creates exponential value through cross-sector positioning and competitive advantages. Partners achieve unprecedented returns through aligned success metrics and revenue sharing excellence.</p>
+            
+            <div class="roi-cards">
+                <div class="roi-card">
+                    <div class="roi-percentage">Exceptional</div>
+                    <h3>AI Blueprint ROI</h3>
+                    <p>Complete transformation through our proprietary AI Business Blueprint execution and cross-sector value creation. Investment details available upon request.</p>
+                </div>
+                
+                <div class="roi-card">
+                    <div class="roi-percentage">Enterprise</div>
+                    <h3>Total Ecosystem Value</h3>
+                    <p>Complete revenue ecosystem including contracts, development programs, marketing, and talent monetization across all sectors. Pricing on request.</p>
+                </div>
+                
+                <div class="roi-card">
+                    <div class="roi-percentage">85%</div>
+                    <h3>Success Probability</h3>
+                    <p>High confidence success rate through competitive advantages, unique cross-sector assets, and proven partnership frameworks vs industry average 20-30%.</p>
+                </div>
+                
+                <div class="roi-card">
+                    <div class="roi-percentage">Premium</div>
+                    <h3>Market Positioning</h3>
+                    <p>Superior market positioning through unique cross-sector advantages and proven value proposition. Competitive pricing structure available on request.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2>Transform Your Enterprise</h2>
+            <p class="subtitle">Ready to transform your business through cross-sector intelligence? Contact Elhem Guernina directly to discuss your <span class="blueprint-highlight">AI Business Blueprint</span> transformation and multi-industry partnership opportunities.</p>
+            
+            <div class="contact-form">
+                <div style="text-align: center; margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, #f8fafc 0%, #fff5f0 100%); border-radius: 15px;">
+                    <h3 style="margin-bottom: 15px; background: linear-gradient(45deg, #ff6b35, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Direct Access to Elhem Guernina</h3>
+                    <p style="color: #666; margin: 0;">Cross-Sector Strategy Partner | Multi-Industry Innovation Catalyst | Data Cross-Pollination Expert</p>
+                    <p style="color: #ff6b35; font-weight: 600; margin: 5px 0;">Amsterdam, Netherlands | 1,891+ LinkedIn Network</p>
+                    <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <div style="background: white; padding: 10px 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                            <p style="color: #ff6b35; font-weight: 600; margin: 0; font-size: 0.9rem;">AI Colllabs</p>
+                            <p style="color: #666; margin: 0; font-size: 0.8rem;">Cross-Sector Intelligence</p>
+                        </div>
+                        <div style="background: white; padding: 10px 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                            <p style="color: #4caf50; font-weight: 600; margin: 0; font-size: 0.9rem;">WeGetBetterAI</p>
+                            <p style="color: #666; margin: 0; font-size: 0.8rem;">15+ Years Multi-Industry</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Executive Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company / Organization</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Executive Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="revenue">Current Annual Revenue</label>
+                    <input type="text" id="revenue" name="revenue" placeholder="Enterprise level (e.g., $50M+, $100M+, $500M+)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="industry">Primary Industry / Sector</label>
+                    <input type="text" id="industry" name="industry" placeholder="Healthcare, Finance, Telecom, Real Estate, Culture, Sports, etc.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="partnership">Cross-Sector Partnership Interest</label>
+                    <select id="partnership" name="partnership">
+                        <option value="">Select engagement type...</option>
+                        <option value="discovery-phase">AI Business Blueprint™ Discovery Phase (5-week program)</option>
+                        <option value="full-blueprint">Complete AI Business Blueprint (Cross-sector transformation)</option>
+                        <option value="healthcare-realestate">Healthcare + Real Estate Data Intelligence</option>
+                        <option value="finance-sports">Finance + Sports Analytics Integration</option>
+                        <option value="telecom-culture">Telecom + Culture Monetization</option>
+                        <option value="multi-sector">Multi-Sector AI Implementation</option>
+                        <option value="cross-industry">Cross-Industry Partnership Development</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Transformation Goals & Timeline</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Describe your enterprise transformation objectives, target growth, and preferred timeline for AI Business Blueprint implementation across sectors..."></textarea>
+                </div>
+                
+                <button type="submit" class="cta-button" style="width: 100%;">Connect with Elhem - Begin Cross-Sector Transformation</button>
+                
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #666;">
+                    Elhem responds personally to qualified enterprise inquiries within 24 hours. Focus on enterprise-level cross-sector partnerships and transformation opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AI Colllabs. Learn. Link. Launch. Listen. Leverage. Lead.</p>
+            <p style="margin-top: 10px; opacity: 0.7;">Dutch Innovation. Cross-Sector Intelligence. Multi-Industry Excellence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const revenue = formData.get('revenue');
+            const partnership = formData.get('partnership');
+            
+            // Basic qualification check
+            if (revenue && !revenue.toLowerCase().includes('m')) {
+                alert('Thank you for your interest. Elhem Guernina specializes in enterprise-level cross-sector partnerships. Please contact us if your organization meets this criteria for transformation.');
+                return;
+            }
+            
+            if (!partnership) {
+                alert('Please select your cross-sector partnership interest to help Elhem understand your transformation needs.');
+                return;
+            }
+            
+            alert('Thank you for your enterprise transformation inquiry! Elhem Guernina will personally contact you within 24 hours to discuss your AI Business Blueprint opportunity and potential cross-sector partnership. Investment details and pricing will be provided during consultation.');
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.feature-card, .step-card, .roi-card, .l-card, .client-logo').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add dynamic gradient animation
+        let gradientDirection = 0;
+        setInterval(() => {
+            gradientDirection += 1;
+            document.querySelector('.hero').style.background = 
+                `linear-gradient(${135 + gradientDirection}deg, #ff6b35 0%, #a4d65e 50%, #4caf50 100%)`;
+        }, 100);
+    </script>
+</body>
+</html>
